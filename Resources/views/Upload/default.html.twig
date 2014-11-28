@@ -1,0 +1,37 @@
+<div id="container_{{ name }}">
+    <a class="btn_upload dtn_fl btn_cv_width UploadButton" href="#" id="uploadFile_{{ name }}">
+        {{ 'joinform.upload.resume'|trans({}, 'MainBundle') }}
+    </a>
+</div>
+<span class="legend_upload_sv" id="cv_status">
+    {% if value|length > 1 %}
+        {{ value }}
+    {% else %}
+        {{ 'joinform.not.upload'|trans({}, 'MainBundle') }}
+    {% endif %}
+</span>
+
+<script type="text/javascript">
+    function startFunction{{ name }}()
+    {
+        showFade();
+    }
+    function callbackFunction{{ name }}(response)
+    {
+        var container = '#container_{{ name }}',
+            res = $.parseJSON(response.response);
+        if (res.success)
+        {
+            $('#cv_status').html(res.name);
+            $('#ShowPopupBtn').addClass('t-button-inactive');
+            $('#wrap_popap').remove();
+            $('#metro_join_type_userInfo_resume').val(res.file);
+        }
+        else
+        {
+            alert(res.error);
+        }
+
+        hideFade();
+    }
+</script>

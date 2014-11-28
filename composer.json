@@ -1,0 +1,32 @@
+{
+    "name": "nfc/upload-bundle",
+    "description": "NFC file upload bundle for Symfony2",
+    "keywords": ["nfc", "NFCLabs", "upload-bundle", "uploadbundle", "NFCUploadBundle"],
+    "homepage": "http://nfclabs.com",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ruslan Bahlai",
+            "email": "ruslan.bahlai@gmail.com"
+        },
+        {
+            "name": "Volodymyr Elert",
+            "email": "vova@elert.ru"
+        }
+    ],
+    "require": {
+        "symfony/framework-bundle": "~2.0",
+        "twig/twig":                "~1.5"
+},
+    "minimum-stability": "dev",
+    "autoload": {
+    "psr-0": { "NFC\\UploadBundle": "" }
+},
+    "target-dir": "NFC/UploadBundle",
+    "extra": {
+    "branch-alias": {
+        "dev-master": "2.2.x-dev"
+    }
+}
+}

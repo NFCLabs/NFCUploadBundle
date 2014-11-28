@@ -1,0 +1,41 @@
+<div id="container_{{ name }}">
+    {% if value|length > 5 %}
+        {% if app.user %}
+            <img src="{{ asset('upload/photo/'~app.user.id~'/main.jpg') }}" style="max-width: 80px; max-height: 80px;" alt="">
+        {% else %}
+            <img src="{{ asset(value) }}"  style="max-width: 80px; max-height: 80px;" alt="">
+        {% endif %}
+    {% else %}
+        <img src="{{ asset('bundles/main/images/none.jpg') }}" style="max-width: 80px; max-height: 80px;" alt="">
+    {% endif %}
+    
+    <div align="clearfix"></div>
+    <a class="btn_upload dtn_fl btn_cv_width UploadButton" href="#" id="uploadFile_{{ name }}">
+        {{ 'joinform.upload.image'|trans({}, 'MainBundle') }}
+    </a>
+</div>
+
+<script type="text/javascript">
+    function startFunction{{ name }}()
+    {
+        showFade();
+
+    }
+    function callbackFunction{{ name }}(response)
+    {
+        var container = '#container_{{ name }}',
+            res = $.parseJSON(response.response);
+        if (res.success)
+        {
+            $('img',container).remove();
+            $(container).prepend('<img style="max-height: 80px; max-width: 80px;" src="'+res.file+'" alt="">');
+            $('.file_upload_field').val(res.file);
+        }
+        else
+        {
+            alert(res.error);
+        }
+
+        hideFade();
+    }
+</script>
