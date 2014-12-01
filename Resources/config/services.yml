@@ -3,7 +3,7 @@ parameters:
 services:
     file_upload.handler:
         class: NFC\UploadBundle\Services\FileHandler
-        arguments: [@session, %file_upload.types%]
+        arguments: [@session, %nfc_upload.types%]
 
     file_upload.form.type:
         class: NFC\UploadBundle\Form\FileUploadType

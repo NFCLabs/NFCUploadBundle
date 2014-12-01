@@ -1,6 +1,6 @@
 <?php
 
-namespace NFC\UploadBundle\DependencyInjection;
+namespace Voltash\UploadBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -22,7 +22,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-            ->scalarNode('web_dir')->end()
+                ->scalarNode('web_dir')->end()
                 ->arrayNode('types')
                     ->prototype('array')
                         ->children()
