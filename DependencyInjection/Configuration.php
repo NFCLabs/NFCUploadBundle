@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('file_upload');
+        $rootNode = $treeBuilder->root('nfc_upload');
 
         $rootNode
             ->children()
