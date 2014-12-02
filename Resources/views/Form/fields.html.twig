@@ -2,9 +2,10 @@
 
 {% block file_upload_type_widget %}
     {% set type = type|default('hidden') %}
-    <input type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" class="file_upload_field" />
+    {% set class = file_type~"_field" %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" class="{{ class }}" />
 
-    {% include template with { name: name, value: value } %}
+    {% include template with { name: name, value: value, class: class } %}
 
 
     <script type="text/javascript">
