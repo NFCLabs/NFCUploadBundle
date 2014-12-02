@@ -20,8 +20,7 @@
     {
         var container = '#container_{{ name }}',
             res = $.parseJSON(response.response);
-        if (res.success)
-        {
+        if (res.success) {
             $('#cv_status').html(res.name);
             $('#ShowPopupBtn').addClass('t-button-inactive');
             $('#wrap_popap').remove();
