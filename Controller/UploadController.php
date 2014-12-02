@@ -26,10 +26,10 @@ class UploadController extends Controller
 
         if ($this->uploadFile->isValid() && ($request->get('secure_token') === $this->get('session')->get('secure_token'))) {
 
-            $filesConfig = $this->container->getParameter('file_upload.types');
+            $filesConfig = $this->container->getParameter('nfc_upload.types');
             $fileSettings = $filesConfig[$request->get('type', 'default')];
             $sessionAttr = $request->get('field');
-            $siteWebDir = $this->container->getParameter('file_upload.web_dir');
+            $siteWebDir = $this->container->getParameter('nfc_upload.web_dir');
             $validator = $this->getFileValidator($fileSettings);
 
             if (!$validator) {
