@@ -52,8 +52,9 @@ class FileHandler
         // TODO make uniqe files name from config
         foreach ($filesInfo as $file)
         {
-            rename($file->path, $dir.'/file.'.$file->extension);
-            $result[] = 'file.'.$file->extension;
+            $fileName = uniqid();
+            rename($file->path, $dir.'/'.$fileName.'.'.$file->extension);
+            $result[] = $fileName.'.'.$file->extension;
         }
 
         return $result;
