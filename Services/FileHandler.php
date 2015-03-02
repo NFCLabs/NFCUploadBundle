@@ -72,28 +72,31 @@ class FileHandler
             {
                 // http://phpimageworkshop.com/documentation.html
                 $layer = ImageWorkshop::initFromPath($file->path);
-                switch ($thumb['action']) {
-                    case "exact_resize":
-                        $layer->resizeInPixel($thumb['width'], $thumb['height'], true, 0, 0, 'MM');
-                        break;
-                    case "landscape_resize":
-                        $layer->resizeInPixel($thumb['width'], null, true);
-                        break;
-                    case "portrait_resize":
-                        $layer->resizeInPixel(null, $thumb['height'], true);
-                        break;
-                    case "exact_crop":
-                        if ($thumb['width']/$thumb['height'] < 1) {
-                            $resize = $thumb['width'];
-                        } else {
-                            $resize = $thumb['height'];
-                        }
-                        $layer->resizeByNarrowSideInPixel($resize, true);
-                        $layer->cropInPixel($thumb['width'], $thumb['height'], 0, 0, "MM");
-                        break;
-                    default:
-                        $layer->resizeInPixel($thumb['width'], $thumb['height'], false); //exact, without props
-                        break;
+
+                if (isset($thumb['action']) == true) {
+                    switch ($thumb['action']) {
+                        case "exact_resize":
+                            $layer->resizeInPixel($thumb['width'], $thumb['height'], true, 0, 0, 'MM');
+                            break;
+                        case "landscape_resize":
+                            $layer->resizeInPixel($thumb['width'], null, true);
+                            break;
+                        case "portrait_resize":
+                            $layer->resizeInPixel(null, $thumb['height'], true);
+                            break;
+                        case "exact_crop":
+                            if ($thumb['width']/$thumb['height'] < 1) {
+                                $resize = $thumb['width'];
+                            } else {
+                                $resize = $thumb['height'];
+                            }
+                            $layer->resizeByNarrowSideInPixel($resize, true);
+                            $layer->cropInPixel($thumb['width'], $thumb['height'], 0, 0, "MM");
+                            break;
+                        default:
+                            $layer->resizeInPixel($thumb['width'], $thumb['height'], false); //exact, without props
+                            break;
+                    }
                 }
 
                 if (isset($thumb['watermark']) == true) {
@@ -101,6 +104,7 @@ class FileHandler
                     $watermarkLayer->opacity($thumb['opacity']);
                     $layer->addLayerOnTop($watermarkLayer, $thumb['padding'], $thumb['padding'], $thumb['position']);
                 }
+
                 $this->checkDir($dir.'/'.$i);
                 $name = $key.uniqid().'.'.$thumb['format'];
                 $layer->save($dir.'/'.$i, $name, false, null, $thumb['quality']);
